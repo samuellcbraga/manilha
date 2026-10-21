@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Manilha — card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap">
+<style>
+  @font-face { font-family: "BoldPixels"; src: url(BoldPixels.ttf); }
+  @page { size: 105mm 148mm; margin: 0; }
+  :root {
+    --ink: #1E1612; --night: #0F0B09; --paper: #F2E6CF; --card: #FBF5E8; --red: #C8402A;
+    --gold: #E8B53A; --soft: #4A3A2C; --muted: #8A7760; --sand: #D9C9AE; --dim: #A8957A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #3A2E26; }
+  body { font: 7.6pt/1.35 Rubik, Arial, sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .side { width: 105mm; height: 148mm; overflow: hidden; position: relative; break-after: page; }
+  @media screen { .side { margin: 8mm auto; box-shadow: 0 2mm 6mm rgba(0,0,0,.4); } }
+  .px { font-family: BoldPixels, "Courier New", monospace; font-weight: normal; letter-spacing: 0.02em; }
+  b { font-weight: 700; }
+
+  /* ---------- frente */
+  .front { background: var(--ink); color: var(--paper); padding: 9mm 8mm 8mm; display: flex; flex-direction: column; }
+  .front .kicker { font-size: 8pt; letter-spacing: 0.18em; color: var(--gold); }
+  .front h1 { font-size: 40pt; line-height: 0.95; margin-top: 2mm; }
+  .front .zap { width: 40mm; margin: 7mm auto 0; transform: rotate(-5deg); display: block; }
+  .front .tag { margin-top: auto; font-size: 10pt; line-height: 1.35; color: var(--sand); }
+  .front .tag .t { color: var(--gold); }
+  .front .motto { margin-top: 3.5mm; padding-top: 3mm; border-top: 0.5mm solid #4A3A2C; font-size: 8pt; color: var(--dim); font-style: italic; }
+
+  /* ---------- verso */
+  .back { background: var(--paper); color: var(--ink); padding: 6.5mm 6.5mm 5.5mm; display: flex; flex-direction: column; gap: 2.6mm; }
+  .back header { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 0.9mm solid var(--ink); padding-bottom: 1.4mm; }
+  .back header h2 { font-size: 17pt; line-height: 1; }
+  .back header span { font-size: 7pt; color: var(--red); }
+  h3 { font-size: 9.5pt; line-height: 1.1; color: var(--red); margin-bottom: 0.9mm; }
+  p { color: var(--soft); }
+  p b { color: var(--ink); }
+
+  .formula { background: var(--ink); color: var(--paper); text-align: center; padding: 1.6mm 0 1.3mm; font-size: 12pt; line-height: 1; box-shadow: 0.8mm 0.8mm 0 var(--red); margin-bottom: 1.2mm; }
+  .formula .t { color: var(--gold); }
+  .formula .x { color: var(--muted); padding: 0 1.2mm; }
+
+  .ladder { display: flex; align-items: center; gap: 1mm; margin-bottom: 1.1mm; }
+  .step { flex: 1; background: var(--card); border: 0.4mm solid var(--ink); padding: 0.7mm 0 0.4mm; text-align: center; line-height: 1.05; }
+  .step .px { font-size: 9.5pt; display: block; }
+  .step small { font-size: 5.6pt; color: var(--soft); text-transform: uppercase; letter-spacing: 0.04em; }
+  .step.hot { background: var(--red); border-color: var(--red); color: var(--paper); }
+  .step.hot small { color: var(--paper); }
+  .arrow { color: var(--muted); font-size: 8pt; }
+  .warn { border-left: 0.8mm solid var(--red); padding: 0.5mm 0 0.5mm 1.6mm; background: #EBD9BA; }
+
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
+  .box { background: var(--card); border: 0.4mm solid var(--ink); box-shadow: 0.8mm 0.8mm 0 var(--ink); padding: 1.6mm 2mm; }
+  .box.dark { background: var(--ink); }
+  .box.dark h3 { color: var(--gold); }
+  .box.dark p { color: var(--sand); }
+  .box.dark p b { color: var(--paper); }
+
+  .run { display: flex; align-items: center; gap: 0.8mm; margin-top: 0.4mm; }
+  .run .stop { flex: 1; text-align: center; background: var(--card); border: 0.4mm solid var(--ink); padding: 0.8mm 0 0.5mm; font-size: 7.5pt; line-height: 1; }
+  .run .stop.boss { background: var(--red); border-color: var(--red); color: var(--paper); }
+  .run .stop small { display: block; font-family: Rubik, Arial, sans-serif; font-size: 5.4pt; color: var(--muted); margin-top: 0.5mm; }
+  .run .stop.boss small { color: var(--paper); }
+
+  footer { margin-top: auto; display: flex; align-items: center; gap: 1.6mm; border-top: 0.4mm solid #CDBFA5; padding-top: 1.8mm; font-size: 7pt; color: var(--soft); }
+  footer svg { width: 3.4mm; height: 3.4mm; flex: none; }
+  footer .sep { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="side front">
+  <p class="kicker px">UM ROGUELIKE DE TRUCO</p>
+  <h1 class="px">MANILHA</h1>
+  <svg class="zap" xmlns="http://www.w3.org/2000/svg" aria-label="O 4 de paus, o zap" viewBox="0 0 440 600" shape-rendering="crispEdges"><defs><g id="paus"><rect x="2" y="0" width="3" height="2"/><rect x="0" y="2" width="7" height="2"/><rect x="0" y="4" width="2" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="5" y="4" width="2" height="1"/><rect x="3" y="5" width="1" height="1"/><rect x="2" y="6" width="3" height="1"/></g></defs><g transform="scale(10)"><rect x="4" y="4" width="40" height="56" fill="#0F0B09"/><rect x="0" y="0" width="40" height="56" fill="#C8402A"/><rect x="2" y="2" width="36" height="52" fill="#F2E6CF"/><g fill="#1E1612"><rect x="5" y="5" width="2" height="6"/><rect x="9" y="5" width="2" height="10"/><rect x="5" y="9" width="6" height="2"/><rect x="29" y="41" width="2" height="6"/><rect x="33" y="41" width="2" height="10"/><rect x="29" y="45" width="6" height="2"/><use href="#paus" x="10" y="16"/><use href="#paus" x="23" y="16"/><use href="#paus" x="10" y="33"/><use href="#paus" x="23" y="33"/></g></g></svg>
+  <p class="tag">Um carteado (des)honesto: Blefes, Cacarecos, Doses... Faça o que for preciso para levar a maior no <span class="t px">TRUCO!</span></p>
+  <p class="motto">Na mesa de bar, quem sabe jogar não sai da mesa.</p>
+</div>
+
+<div class="side back">
+  <header>
+    <h2 class="px">MANILHA</h2>
+    <span class="px">o jogo em um card</span>
+  </header>
+
+  <section>
+    <h3 class="px">A mesa</h3>
+    <p>Truco paulista <b>1 contra 1</b>: 3 cartas, leva a mão quem vencer <b>2 de 3 duelos</b>. A <b>Carta da Mesa</b> define a manilha. Sua arma são as cartas na mão.</p>
+  </section>
+
+  <section>
+    <h3 class="px">A conta</h3>
+    <div class="formula px">FICHAS<span class="x">×</span>MULT<span class="x">×</span><span class="t">TRUCO</span></div>
+    <p>Cada duelo vencido rende <b>Fichas</b>. Os <b>Cacarecos</b> somam <b>Mult</b>. Quem leva a mão tira a conta da vida do outro: a <b>Moral</b> do adversário ou o seu <b>Juízo</b>.</p>
+  </section>
+
+  <section>
+    <h3 class="px">TRUCO!</h3>
+    <div class="ladder">
+      <div class="step"><span class="px">×3</span><small>truco</small></div><span class="arrow px">→</span>
+      <div class="step hot"><span class="px">×6</span><small>seis</small></div><span class="arrow px">→</span>
+      <div class="step hot"><span class="px">×9</span><small>nove</small></div><span class="arrow px">→</span>
+      <div class="step hot"><span class="px">×12</span><small>doze</small></div>
+    </div>
+    <p class="warn">Só o truco multiplica, e vale pros dois lados. A partir do <b>seis</b>, quem aumenta penhora um Cacareco. Dá pra blefar. <b>Correr</b> é a saída segura.</p>
+  </section>
+
+  <div class="duo">
+    <div class="box">
+      <h3 class="px">Cacarecos</h3>
+      <p>Passivos, ficam a run toda: <b>Peixeira</b>, <b>Chinelo</b>, <b>Sanfona</b>, <b>Rádio de pilha</b>…</p>
+    </div>
+    <div class="box dark">
+      <h3 class="px">Doses</h3>
+      <p>Uso único: <b>Cachaça</b>, <b>Café Coado</b>, <b>Cajuína</b>, <b>Quentão</b>. Bebeu demais? <b>Ressaca</b>.</p>
+    </div>
+  </div>
+
+  <section>
+    <h3 class="px">A run</h3>
+    <div class="run">
+      <div class="stop px">BOTECO<small>Seu Zéca</small></div><span class="arrow px">→</span>
+      <div class="stop px">FEIRA<small>em breve</small></div><span class="arrow px">→</span>
+      <div class="stop px">ARRAIÁ<small>em breve</small></div><span class="arrow px">→</span>
+      <div class="stop boss px">CORONEL<small>chefe final</small></div>
+    </div>
+    <p style="margin-top:1.4mm">No boteco: <b>Zé Tonho</b>, o vaqueiro, <b>Dona Cida</b>, a feirante, e <b>Seu Zéca</b>, o dono. Cada um tem uma <b>Coragem</b> e um sinal que entrega a mão.</p>
+  </section>
+
+  <footer>
+    <span>Samuel Lins</span><span class="sep">·</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="E-mail" fill="none" stroke="#4A3A2C" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Slack" fill="#4A3A2C"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>
+    <span>slcb@cesar.school</span>
+  </footer>
+</div>
+
+</body>
+</html>
